@@ -1,0 +1,48 @@
+variable "vpc_cidr" {
+  type        = string
+  description = "The CIDR to use for the VPC."
+}
+
+variable "region" {
+  type        = string
+  description = "The region into which to deploy the VPC."
+}
+
+variable "availability_zones" {
+  type        = list(string)
+  description = "The availability zones for which to add subnets."
+}
+
+variable "component" {
+  type        = string
+  description = "The component this network will contain."
+}
+
+variable "deployment_identifier" {
+  type        = string
+  description = "An identifier for this instantiation."
+}
+
+variable "dependencies" {
+  description = "A comma separated list of components depended on my this component."
+  type        = list(string)
+  default     = []
+}
+
+variable "public_subnets_offset" {
+  description = "The number of /24s to offset the public subnets in the VPC CIDR."
+  type        = number
+  default     = 0
+}
+
+variable "private_subnets_offset" {
+  description = "The number of /24s to offset the private subnets in the VPC CIDR."
+  type        = number
+  default     = 0
+}
+
+variable "include_nat_gateways" {
+  description = "Whether or not to deploy NAT gateways in each availability zone for outbound Internet connectivity (\"yes\" or \"no\")."
+  type        = string
+  default     = "yes"
+}
