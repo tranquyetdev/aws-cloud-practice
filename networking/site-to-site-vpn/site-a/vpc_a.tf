@@ -28,7 +28,7 @@ module "vpc_a" {
     IP1 = {
       bgp_asn = 65000
       # This is the public IP address of the EC2 instance that is running OpenSwan
-      ip_address = var.vpc_b_router_public_ip
+      ip_address = var.cgw_ip
     }
   }
 

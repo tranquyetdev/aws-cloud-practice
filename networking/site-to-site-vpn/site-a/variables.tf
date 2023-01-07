@@ -25,7 +25,7 @@ variable "vpc_b_cidr" {
   description = "The CIDR to use for the VPC B (Coporate Network)."
 }
 
-variable "vpc_b_router_public_ip" {
+variable "cgw_ip" {
   type        = string
   description = "The public IP address of the VPC B router (the EC2 that is running Openswan)."
 }
