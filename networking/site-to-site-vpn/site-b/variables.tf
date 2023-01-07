@@ -18,6 +18,11 @@ variable "public_subnets" {
   description = "The CIDR of the public subnets"
 }
 
+variable "private_subnets" {
+  type        = list(string)
+  description = "The CIDR of the private subnets"
+}
+
 variable "ec2_b_ip" {
   type        = string
   description = "The static public IP for EC2 B"

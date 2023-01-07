@@ -34,6 +34,11 @@ module "ec2_b" {
   vpc_security_group_ids = [aws_security_group.ec2_b_sg.id]
   subnet_id              = element(module.vpc_b.public_subnets, 0)
 
+  # Important to bypass security group check for this router
+  # so that the traffic is able to flow through
+  source_dest_check = false
+
+  # Automate set up the OpenSwan via user data
   user_data_replace_on_change = true
   user_data = templatefile("./templates/ec2_b_user_data.tftpl", {
     leftid        = var.ec2_b_ip,
@@ -48,4 +53,3 @@ module "ec2_b" {
     Environment = "dev"
   }
 }
-

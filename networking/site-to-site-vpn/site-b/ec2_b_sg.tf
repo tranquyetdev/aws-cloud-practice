@@ -33,3 +33,22 @@ resource "aws_security_group_rule" "ec2_b_sg_egress" {
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.ec2_b_sg.id
 }
+
+
+resource "aws_security_group_rule" "ec2_b_allow_icmp_internal_sgr" {
+  type              = "ingress"
+  from_port         = -1
+  to_port           = -1
+  protocol          = "icmp"
+  cidr_blocks       = [var.vpc_cidr]
+  security_group_id = aws_security_group.ec2_b_sg.id
+}
+
+resource "aws_security_group_rule" "ec2_b_allow_tcp_internal_sgr" {
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 65535
+  protocol          = "tcp"
+  cidr_blocks       = [var.vpc_cidr]
+  security_group_id = aws_security_group.ec2_b_sg.id
+}
